@@ -1,42 +1,62 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+:root{
+  --corPrincipal: #F2F7f2;
+  --cor1: #8E5572;
+  --cor2: #BCAA99;
+  --cor3: #443850;
+  --cel: #000F08;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.frame {
+  width: 500px;
+  height: 500px;
+  background-color: var(--cor3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+} 
+
+.container{
+  width: 100%;
+  height: 100vh;
+  background-color: var(--corPrincipal);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--cel);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.board {
+  display: flex;
+  width: 500px; 
+  flex-wrap: wrap;
+  justify-content: center;
+  opacity: 1;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.board.gameOver{
+  opacity: 0.7;
 }
 
-.card {
-  padding: 2em;
+.cell {
+  width: 110px;
+  height: 110px; 
+  background-color: var(--cel);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px; 
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 48px;
 }
 
-.read-the-docs {
-  color: #888;
+.cell.O {
+  background-color: var(--cor2);
+}
+
+.cell.X{
+  background-color: var(--cor1);
 }
