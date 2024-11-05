@@ -82,3 +82,7 @@ button:hover{
 .cell.X{
   background-color: var(--cor1);
 }
+
+.wins {
+  margin-top: 50px;
+}

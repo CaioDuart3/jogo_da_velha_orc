@@ -13,6 +13,8 @@ function App() {
   const [winner, setWinner] = useState<Players | null> (null);
   const [draw, setDraw] = useState<boolean | null> (null);
   const [marks, setMarks ] = useState<Marks>({}); //! trocar
+  const [winsO, setWinsO] = useState(0);
+  const [winsX, setWinsX] = useState(0);  
   const gameOver = !!winner || !!draw;
   /*
   "key": "player",
@@ -75,6 +77,11 @@ function App() {
 
     if (winner){
       setWinner(winner)
+      if (winner === "O") {
+        setWinsO((prevWinsO) => prevWinsO + 1);
+      } else {
+        setWinsX((prevWinsX) => prevWinsX + 1);
+      }
     } else{
       if (Object.keys(marks).length === 9){
         setDraw(true)
@@ -84,10 +91,10 @@ function App() {
 
   return (
     <div className='container'>
-      { winner && <h1>{winner} ganhou! </h1>}
+      { winner && <h1>Jogador {winner} ganhou! </h1>}
       {draw && <h1>Empate!</h1>}
       {gameOver && <button onClick={reset}>Jogar novamente</button>}
-        {!gameOver && <p>vez de {turn}</p>}
+        {!gameOver && <h1>Vez de {turn}</h1>}
         <div className='frame'>
           <div className={`board ${gameOver ? "gameOver": null}`}>
             {getSquares().map(( _ , i)=>( // pesquisar map()
@@ -97,7 +104,14 @@ function App() {
             ))}
           </div>
         </div>
+        <div className='wins'>
+          <h1>Número de vitórias:</h1>
+          <br/>
+          <h2>Jogador O: {winsO}</h2>
+          <h2>Jogador X: {winsX}</h2>
+        </div>
     </div>
+
   )
 }
 
