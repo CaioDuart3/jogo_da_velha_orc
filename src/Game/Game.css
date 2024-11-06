@@ -8,6 +8,7 @@
   --cel: #000F08;
   --cel-hover: #1a1b1b;
   --cor-text-light: #fefefe;
+  --cor-pts: rgb(244, 228, 80);
 }
 
 *{
@@ -111,5 +112,5 @@ h2{
   gap: 16px;
 }
 .pts{
-  color: yellow;
+  color: var(--cor-pts);
 }
