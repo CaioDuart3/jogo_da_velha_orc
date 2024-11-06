@@ -8,7 +8,7 @@ function RoutesWeb() {
         <Router>
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="https://jogo-da-velha-orc-51mg.vercel.app/game" element={<Game />} />
+                <Route path="/game" element={<Game />} />
                 {/* <Route path="/register" element={<Register />} /> */}
             </Routes>
         </Router>
