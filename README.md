@@ -35,3 +35,7 @@ yarn dev
 
 ### 5. Acessar o projeto no navegador
 Após a execução do comando acima, acesse o projeto no seu navegador pelo endereço indicado no terminal, geralmente [http://localhost:3000](http://localhost:3000).
+
+### 6. Referências
+Além dos slides oferecidos pela **Orc'estra Gamificações**, também utilizamos como base de conteúdo este vídeo:
+https://www.youtube.com/live/sygiVZ8w2JM?si=QeLsiKgG6VUEo6BM
