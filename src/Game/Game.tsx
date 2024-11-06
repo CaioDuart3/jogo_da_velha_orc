@@ -91,14 +91,18 @@ function Game() {
   return (
       <div className='container'>
         <div className='wins'>
-          <h2>{playerTwoName}: {winsX}</h2>
+          <h2>{playerOneName}: <b className='pts'>{winsO}</b></h2>
         </div>
+
         <div className='container-board'>
-          {winner && <h1>{winner === playerTwoSymbol ? playerTwoName : playerOneName} ganhou!</h1>}
-          {draw && <h1>Empate!</h1>}
-          {gameOver && <button onClick={reset}>Jogar novamente</button>}
-          {!gameOver && <h1>Vez de {turn === playerOneSymbol ? playerOneName : playerTwoName}</h1>}
+        <div className='btns'>
+            <button onClick={returnHome}>Início</button>
+            <button onClick={resetScore}>Resetar Placar</button>
+          </div>
           <div className='frame'>
+            {!gameOver && <h1>Vez de {turn === playerOneSymbol ? playerOneName : playerTwoName}</h1>}
+            {winner && <h1>{winner === playerTwoSymbol ? playerTwoName : playerOneName} ganhou!</h1>}
+            {draw && <h1>Empate!</h1>}
             <div className={`board ${gameOver ? "gameOver" : ""}`}>
               {getSquares().map((_, i) => (
                   <div key={i} className={`cell ${marks[i]}`} onClick={() => play(i)}>
@@ -107,12 +111,13 @@ function Game() {
               ))}
             </div>
           </div>
-          <div className='end'>
-            <button onClick={returnHome}>Home</button>
-            <button onClick={resetScore}>Resetar Placar</button>
-          </div>
+          <div className='btns'>{gameOver && <button onClick={reset}>Jogar novamente</button>}</div>
+
         </div>
-        <h2>{playerOneName}: {winsO}</h2>
+
+        <div className='wins'>
+          <h2>{playerTwoName}: <b className='pts'>{winsX}</b></h2>
+        </div>
       </div>
   );
 }
