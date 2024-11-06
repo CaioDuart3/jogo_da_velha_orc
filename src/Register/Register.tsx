@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import {FormEvent, useState} from 'react';
 import './Register.css';
 import {useNavigate} from "react-router-dom";
 
@@ -7,7 +7,7 @@ function RegistrationForm() {
     const [playerTwoName, setPlayerTwoName] = useState('');
     const navigate = useNavigate();
 
-    const handleSubmit = (event) => {
+    const handleSubmit = (event : any) => {
         event.preventDefault();
         localStorage.setItem('playerOneName', playerOneName);
         localStorage.setItem('playerTwoName', playerTwoName);
