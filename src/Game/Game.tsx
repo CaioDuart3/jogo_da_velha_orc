@@ -61,6 +61,16 @@ function Game() {
     setDraw(null);
   };
 
+  const resetScore = () => {
+    setWinsO(0);
+    setWinsX(0);
+  
+    setTurn(marks[0] === "O" ? "X" : "O");
+    setMarks({});
+    setWinner(null);
+    setDraw(null);
+  }
+
   const returnHome = () => {
     localStorage.removeItem('playerOneName');
     localStorage.removeItem('playerTwoName');
@@ -98,12 +108,12 @@ function Game() {
             </div>
           </div>
 
-          <button onClick={returnHome}>Home</button>
+          <div className='end'>
+            <button onClick={returnHome}>Home</button>
+            <button onClick={resetScore}>Resetar Placar</button>
+          </div>
         </div>
-
-        <div className='wins'>
-          <h2>{playerOneName}: {winsO}</h2>
-        </div>
+        <h2>{playerOneName}: {winsO}</h2>
       </div>
   );
 }

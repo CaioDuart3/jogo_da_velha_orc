@@ -37,12 +37,14 @@ button:hover{
   color: var(--cor-text-light);
   gap: 120px;
 }
+
 .container-board{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
 .frame {
   width: 500px;
   height: 500px;
@@ -51,6 +53,7 @@ button:hover{
   justify-content: center;
   align-items: center;
   border-radius: 5px;
+  margin-top: 30px;
 } 
 
 .board {
@@ -90,6 +93,6 @@ button:hover{
   background-color: var(--cor1);
 }
 
-.wins {
-  margin-top: 50px;
+.end {
+  margin-top: 30px;
 }
