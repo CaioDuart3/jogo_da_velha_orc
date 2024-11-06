@@ -1,36 +1,5 @@
 import { useState, useEffect } from 'react';
-import './App.css'
-import PlayerSetup from './PlayerSetup';
-
-
-// Adicione o estado para o nome dos jogadores e a tela de configuração
-const [playerXName, setPlayerXName] = useState<string | null>(null);
-const [playerOName, setPlayerOName] = useState<string | null>(null);
-const [playerXName, setPlayerXName] = useState<string | null>(null);
-const [symbol, setSymbol] = useState<'X' | 'O'>('X');
-
-// Função para iniciar o jogo com os nomes dos jogadores
-const startGame = (playerX: string, playerO: string, chosenSymbol: 'X' | 'O') => {
-  setPlayerXName(playerX);
-  setPlayerOName(playerO);
-  setSymbol(chosenSymbol);
-}
-
-// Renderização condicional para mostrar a tela de cadastro ou o jogo
-return playerXName && playerOName ? (
-  <div className="App">
-    {/* Resto do código do jogo */}
-  </div>
-) : (
-  <PlayerSetup onStartGame={startGame} />
-);
-
-
-
-
-
-
-
+import './Game.css'
 
 type Players = "O" | "X";
 
@@ -38,7 +7,7 @@ interface Marks {
   [key: string]: Players;
 }
 
-function App() { 
+function Game() { 
 
   const [turn, setTurn] = useState<Players>("O");
   const [winner, setWinner] = useState<Players | null> (null);
@@ -47,6 +16,7 @@ function App() {
   const [winsO, setWinsO] = useState(0);
   const [winsX, setWinsX] = useState(0);  
   const gameOver = !!winner || !!draw;
+
   /*
   "key": "player",
   "1": "O",
@@ -122,28 +92,30 @@ function App() {
 
   return (
     <div className='container'>
-      { winner && <h1>Jogador {winner} ganhou! </h1>}
-      {draw && <h1>Empate!</h1>}
-      {gameOver && <button onClick={reset}>Jogar novamente</button>}
-        {!gameOver && <h1>Vez de {turn}</h1>}
-        <div className='frame'>
-          <div className={`board ${gameOver ? "gameOver": null}`}>
-            {getSquares().map(( _ , i)=>( // pesquisar map()
-                <div className={` cell ${getCellPlayer(i)}`} onClick={()=> play(i)}>
-                    {marks[i]}
-                </div>
-            ))}
-          </div>
-        </div>
         <div className='wins'>
-          <h1>Número de vitórias:</h1>
-          <br/>
-          <h2>Jogador O: {winsO}</h2>
           <h2>Jogador X: {winsX}</h2>
+        </div>
+      <div className='container-board'>
+        { winner && <h1>Jogador {winner} ganhou! </h1>}
+        {draw && <h1>Empate!</h1>}
+        {gameOver && <button onClick={reset}>Jogar novamente</button>}
+          {!gameOver && <h1>Vez de {turn}</h1>}
+          <div className='frame'>
+            <div className={`board ${gameOver ? "gameOver": null}`}>
+              {getSquares().map(( _ , i)=>( // pesquisar map()
+                  <div className={` cell ${getCellPlayer(i)}`} onClick={()=> play(i)}>
+                      {marks[i]}
+                  </div>
+              ))}
+            </div>
+          </div>
+      </div>
+        <div className='wins'>
+          <h2>Jogador O: {winsO}</h2>
         </div>
     </div>
 
   )
 }
 
-export default App
+export default Game

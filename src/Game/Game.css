@@ -31,10 +31,17 @@ button:hover{
   background-color: var(--corPrincipal);
 
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   color: var(--cor-text-light);
+  gap: 120px;
+}
+.container-board{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .frame {
   width: 500px;
