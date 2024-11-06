@@ -5,12 +5,21 @@ import {useNavigate} from "react-router-dom";
 function RegistrationForm() {
     const [playerOneName, setPlayerOneName] = useState('');
     const [playerTwoName, setPlayerTwoName] = useState('');
+    const [playerOneSymbol, setPlayerOneSymbol] = useState('X');
+    const [playerTwoSymbol, setPlayerTwoSymbol] = useState('O');
+
     const navigate = useNavigate();
 
     const handleSubmit = (event : any) => {
         event.preventDefault();
+        if (playerOneSymbol === playerTwoSymbol) {
+            alert('Os símbolos dos jogadores devem ser diferentes');
+            return;
+        }
         localStorage.setItem('playerOneName', playerOneName);
         localStorage.setItem('playerTwoName', playerTwoName);
+        localStorage.setItem('playerOneSymbol', playerOneSymbol);
+        localStorage.setItem('playerTwoSymbol', playerTwoSymbol);
         navigate('/game');
     };
 
@@ -29,6 +38,14 @@ function RegistrationForm() {
                     </label>
                 </div>
                 <div>
+                    <label>Escolha seu Símbolo (Jogador 1):
+                        <select value={playerOneSymbol} onChange={(e) => setPlayerOneSymbol(e.target.value)}>
+                            <option value="X">X</option>
+                            <option value="O">O</option>
+                        </select>
+                    </label>
+                </div>
+                <div>
                     <label>Nome do Jogador 2:
                         <input
                             type="text"
@@ -36,6 +53,15 @@ function RegistrationForm() {
                             onChange={(e) => setPlayerTwoName(e.target.value)}
                             required
                         />
+                    </label>
+                </div>
+
+                <div>
+                    <label>Escolha seu Símbolo (Jogador 2):
+                        <select value={playerTwoSymbol} onChange={(e) => setPlayerTwoSymbol(e.target.value)}>
+                            <option value="X">X</option>
+                            <option value="O">O</option>
+                        </select>
                     </label>
                 </div>
                 <button type="submit">Registrar</button>

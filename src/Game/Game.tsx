@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import './Game.css';
-import {useNavigate} from "react-router-dom";
 
 type Players = "O" | "X";
 
@@ -9,6 +9,8 @@ interface Marks {
 }
 
 function Game() {
+  const [playerOneSymbol, setPlayerOneSymbol] = useState<Players>("O");
+  const [playerTwoSymbol, setPlayerTwoSymbol] = useState<Players>("X");
   const [turn, setTurn] = useState<Players>("O");
   const [winner, setWinner] = useState<Players | null>(null);
   const [draw, setDraw] = useState<boolean | null>(null);
@@ -20,21 +22,24 @@ function Game() {
   const gameOver = !!winner || !!draw;
   const navigate = useNavigate();
 
-
   useEffect(() => {
-    const nameO = localStorage.getItem('playerOneName');
-    const nameX = localStorage.getItem('playerTwoName');
-    setPlayerOneName(`${nameO} O` || 'Jogador O');
-    setPlayerTwoName(`${nameX} X` || 'Jogador X');
+    const nameO = localStorage.getItem('playerOneName') || 'Jogador O';
+    const nameX = localStorage.getItem('playerTwoName') || 'Jogador X';
+    const symbol1 = localStorage.getItem('playerOneSymbol') as Players || 'O';
+    const symbol2 = localStorage.getItem('playerTwoSymbol') as Players || 'X';
+    setPlayerOneName(nameO);
+    setPlayerTwoName(nameX);
+    setPlayerOneSymbol(symbol1);
+    setPlayerTwoSymbol(symbol2);
+    setTurn(symbol1);
   }, []);
 
   const play = (index: number) => {
     if (marks[index] || gameOver) {
       return;
     }
-
     setMarks(prev => ({ ...prev, [index]: turn }));
-    setTurn(prev => prev === "O" ? "X" : "O");
+    setTurn(prev => prev === playerOneSymbol ? playerTwoSymbol : playerOneSymbol);
   };
 
   const getSquares = () => new Array(9).fill(null);
@@ -55,7 +60,7 @@ function Game() {
   };
 
   const reset = () => {
-    setTurn("O");
+    setTurn(playerOneSymbol);
     setMarks({});
     setWinner(null);
     setDraw(null);
@@ -64,29 +69,24 @@ function Game() {
   const resetScore = () => {
     setWinsO(0);
     setWinsX(0);
-  
-    setTurn(marks[0] === "O" ? "X" : "O");
-    setMarks({});
-    setWinner(null);
-    setDraw(null);
+    reset();
   }
 
   const returnHome = () => {
     localStorage.removeItem('playerOneName');
     localStorage.removeItem('playerTwoName');
     navigate('/');
-
   }
 
   useEffect(() => {
     const winner = getWinner();
     if (winner) {
       setWinner(winner);
-      winner === "O" ? setWinsO(winsO + 1) : setWinsX(winsX + 1);
+      winner === playerOneSymbol ? setWinsO(winsO + 1) : setWinsX(winsX + 1);
     } else if (Object.keys(marks).length === 9) {
       setDraw(true);
     }
-  }, [marks]);
+  }, [marks, playerOneSymbol, playerTwoSymbol]);
 
   return (
       <div className='container'>
@@ -94,10 +94,10 @@ function Game() {
           <h2>{playerTwoName}: {winsX}</h2>
         </div>
         <div className='container-board'>
-          {winner && <h1>{winner === "X" ? playerTwoName : playerOneName} ganhou!</h1>}
+          {winner && <h1>{winner === playerTwoSymbol ? playerTwoName : playerOneName} ganhou!</h1>}
           {draw && <h1>Empate!</h1>}
           {gameOver && <button onClick={reset}>Jogar novamente</button>}
-          {!gameOver && <h1>Vez de {turn === "O" ? playerOneName : playerTwoName}</h1>}
+          {!gameOver && <h1>Vez de {turn === playerOneSymbol ? playerOneName : playerTwoName}</h1>}
           <div className='frame'>
             <div className={`board ${gameOver ? "gameOver" : ""}`}>
               {getSquares().map((_, i) => (
@@ -107,7 +107,6 @@ function Game() {
               ))}
             </div>
           </div>
-
           <div className='end'>
             <button onClick={returnHome}>Home</button>
             <button onClick={resetScore}>Resetar Placar</button>
