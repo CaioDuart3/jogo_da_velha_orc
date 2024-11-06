@@ -1,52 +1,37 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Jogo da Velha
 
-Currently, two official plugins are available:
+Este projeto foi desenvolvido como parte de um desafio de capacitação trainee, utilizando React-TS para a empresa **Orc'estra Gamificações**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Pré-requisitos
+- Tenha o [Node.js](https://nodejs.org/) e o gerenciador de pacotes [Yarn](https://yarnpkg.com/) instalados em sua máquina.
 
-## Expanding the ESLint configuration
+## Instalação e Execução
+> **Nota:** Todos os comandos a seguir devem ser executados em um terminal (CMD, PowerShell, Bash) de sua preferência.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### 1. Clonar o repositório
+Abra o terminal e execute o comando abaixo no diretório onde deseja salvar o projeto:
+```bash
+git clone https://github.com/CaioDuart3/jogo_da_velha_orc.git
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-
-kkj
+### 2. Acessar o diretório do projeto
+Entre na pasta do projeto com:
+```bash
+cd jogo_da_velha_orc
 ```
+
+### 3. Instalar as dependências
+Instale as dependências do projeto com o comando:
+```bash
+yarn install
+```
+
+### 4. Executar o projeto
+Para iniciar o servidor de desenvolvimento, execute:
+```bash
+yarn dev
+```
+
+### 5. Acessar o projeto no navegador
+Após a execução do comando acima, acesse o projeto no seu navegador pelo endereço indicado no terminal, geralmente [http://localhost:3000](http://localhost:3000).
