@@ -1,4 +1,4 @@
-import {FormEvent, useState} from 'react';
+import {useState} from 'react';
 import './Register.css';
 import {useNavigate} from "react-router-dom";
 
